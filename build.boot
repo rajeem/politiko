@@ -8,14 +8,26 @@
                   [tailrecursion/boot-jetty  "0.1.3"]
                   [org.martinklepsch/boot-garden "1.3.0-0"]
                   [datascript "0.15.0"]]
-  :source-paths #{"src"}
+  :source-paths #{"src/hl" "src/garden"}
   :asset-paths  #{"assets"})
 
 (require
   '[adzerk.boot-cljs         :refer [cljs]]
   '[adzerk.boot-reload       :refer [reload]]
   '[hoplon.boot-hoplon       :refer [hoplon prerender]]
-  '[tailrecursion.boot-jetty :refer [serve]])
+  '[tailrecursion.boot-jetty :refer [serve]]
+  '[org.martinklepsch.boot-garden :refer [garden]])
+
+(def garden-prefixes
+	[:transition
+	 :transition-duration
+	 :transition-property
+	 :transform
+	 :align-items
+	 :justify-content
+	 :flex-direction
+	 :flex
+	 :user-select])
 
 (deftask dev
   "Build politiko for local development."
@@ -26,6 +38,10 @@
     (hoplon)
     (reload)
     (cljs)
+    (garden :styles-var 'politiko.styles/main
+            :output-to "css/main.css"
+            :vendors ["webkit" "moz"]
+            :auto-prefix garden-prefixes)
     (serve :port 8000)))
 
 (deftask prod
