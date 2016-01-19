@@ -12,11 +12,6 @@
 
 (cell= (println polidata))
 
-#_(let [w (t/writer :json)
-      r (t/reader :json)
-      jsonified (t/write w [1 2 3])]
-  (println jsonified))
-
 (html
   (head
     (link :href "css/main.css" :rel "stylesheet"))
