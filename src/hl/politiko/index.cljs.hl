@@ -1,4 +1,21 @@
-(page "index.html")
+(page "index.html"
+      (:require [datascript.core :as d]
+                [cognitect.transit :as t]))
+
+(defc polidata nil)
+
+(.ajax js/jQuery #js {:url "data.json"
+                      :dataType "text"
+                      :success (fn [res]
+                                 (let [dt (t/read (t/reader :json) res)]
+                                   (reset! polidata dt)))})
+
+(cell= (println polidata))
+
+#_(let [w (t/writer :json)
+      r (t/reader :json)
+      jsonified (t/write w [1 2 3])]
+  (println jsonified))
 
 (html
   (head

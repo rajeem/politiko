@@ -7,8 +7,10 @@
                   [org.clojure/clojurescript "1.7.228"]
                   [tailrecursion/boot-jetty  "0.1.3"]
                   [org.martinklepsch/boot-garden "1.3.0-0"]
-                  [datascript "0.15.0"]]
+                  [datascript "0.15.0"]
+                  [com.cognitect/transit-cljs "0.8.237"]]
   :source-paths #{"src/hl" "src/garden"}
+  :resource-paths #{"data"}
   :asset-paths  #{"assets"})
 
 (require
