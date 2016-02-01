@@ -24,7 +24,6 @@
 <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="components/angular-ui/common/module.js"></script>
 
-<script src="js/data.js"></script>
 <script src="js/papaparse.js"></script>
 <script src="js/politiko.js"></script>
 
@@ -124,7 +123,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
 					<div id="question">
 
-						<!-- <label><input type="checkbox" ng-model="includeDeductions.value" ng-click="update()">Include deductions</input></label> -->
 						<h1>{{curIssue.name}}</h1>
 						<h4>{{curIssue.description}}</h4>
 
@@ -188,7 +186,12 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						<tr ng-repeat="cand in cands">
 							<th>{{cand.name}}</th>
 							<td ng-repeat="issue in issues" ng-class="getStance(cand, issue)">
-								{{getStance(cand, issue)}}
+								<a ng-show="source(cand, issue)" ng-href="source(cand, issue)">
+									{{getStance(cand, issue)}}
+								</a>
+								<span ng-hide="source(cand, issue)">
+									{{getStance(cand, issue)}}
+								</span>
 							</td>
 						</tr>
 					</tbody>
